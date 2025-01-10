@@ -40,5 +40,3 @@ export const startup = defineType({
         }),
     ],
 })
-
-const n =  markdown
