@@ -1,5 +1,3 @@
-//startup/id/sda
-
 import React, {Suspense} from 'react'
 import {client} from "@/sanity/lib/client";
 import {PLAYLIST_BY_SLUG_QUERY, STARTUP_BY_ID} from "@/sanity/lib/queries";
