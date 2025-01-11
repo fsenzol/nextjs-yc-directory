@@ -4,11 +4,11 @@ import {STARTUP_QUERY} from "@/sanity/lib/queries";
 import {sanityFetch, SanityLive} from "@/sanity/lib/live";
 import {auth} from "@/auth";
 
+export const experimental_ppr = true
 
 export default async function Home({searchParams}: { searchParams: Promise<{ query?: string }> }) {
     const query = (await searchParams).query
     const params = {search: query || null}
-   // const posts = await client.fetch(STARTUP_QUERY); // This was using ISR
     const {data: posts}  = await sanityFetch({query: STARTUP_QUERY, params})
     await auth();
     return (
