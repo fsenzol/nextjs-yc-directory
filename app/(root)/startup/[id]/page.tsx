@@ -8,6 +8,7 @@ import Image from "next/image";
 import markdown from 'markdown-it';
 import {Skeleton} from '@/components/ui/skeleton'
 import StartupCard, {StartupTypeCard} from "@/components/StartupCard";
+import View from "@/components/View";
 export const experimental_ppr = true;
 const md = markdown();
 
@@ -21,7 +22,7 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
             slug: "editor-picks"
         })
     ])
-    console.log("Editor: " + editorPicks)
+
 
     const {_createdAt, title, description, image, author, category} = post;
     const parsedContent = md.render(post?.pitch || '')
@@ -39,8 +40,10 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
             </section>
 
             <section className="section_container">
-                <img src={image}
+                <Image src={image}
                     alt="thumbnail"
+                       width={3000}
+                       height={3000}
                      className="w-full h-auto rounded-xl"
                 />
 
@@ -73,7 +76,11 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
                         <p className="no-results">No details provided</p>
                     )}
                 </div>
-
+                <div className="absolute bottom-4">
+                  <Suspense fallback={<Skeleton className="w-full h-[100px]"/>}>
+                      <View id={id}/>
+                  </Suspense>
+                </div>
                 <hr className="divider"/>
 
                 {
@@ -95,4 +102,6 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
         </main>
     )
 }
+
+
 export default Page
