@@ -13,7 +13,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./",
     "plugins": [
       {
         "name": "next"
@@ -22,7 +21,7 @@
     "paths": {
       "@/*": ["./*"],
       "@uiw/codemirror-extensions-basic-setup": [
-        "node_modules/.pnpm/@uiw+codemirror-extensions-basic-setup"
+        "/node_modules/.pnpm/@uiw+codemirror-extensions-basic-setup"
       ]
     }
   },

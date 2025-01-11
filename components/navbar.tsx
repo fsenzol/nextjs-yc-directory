@@ -2,7 +2,7 @@ import React from 'react'
 import {auth, signIn, signOut} from "@/auth";
 import Link from "next/link";
 import Image from "next/image";
-import logo from '../public/logo.png'
+import logo from '@/app/assets/logo.png'
 import {BadgePlus, LogOut} from "lucide-react";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 
