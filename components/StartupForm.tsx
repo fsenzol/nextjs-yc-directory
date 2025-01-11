@@ -9,7 +9,6 @@ import {Send} from "lucide-react";
 import {formSchema} from "@/sanity/lib/validation";
 import {ZodError} from "zod";
 import {useToast} from "@/hooks/use-toast";
-import {redirect} from "next/navigation";
 import {useRouter} from "next/navigation";
 import {createPitch} from "@/sanity/lib/actions";
 
@@ -34,6 +33,7 @@ const StartupForm = () => {
              pitch
          }
          setErrors({});
+
          await formSchema.parseAsync(formValues);
          console.log(formValues);
 
@@ -45,23 +45,26 @@ const StartupForm = () => {
          })
 
             router.push(`/startup/${result._id}`)
-         // }
-           // return result;
+
        } catch (err: unknown) {
            if (err instanceof ZodError) {
                const fieldErrors = err.flatten().fieldErrors;
                setErrors(fieldErrors as unknown as Record<string, string>);
 
-
-               redirect(`/startup/{`);
-
-               return {...prevState, error: "Validation failed", status: "ERROR"};
-          } else
                toast({
                    title: "Error",
                    description: "Please check your input",
                    variant: "destructive"
                })
+
+               return {...prevState, error: "Validation failed", status: "ERROR"};
+          }
+
+            toast({
+                title: "Error",
+                description: "An unexpected error occurred",
+                variant: "destructive"
+            })
 
            return {
                ...prevState,
