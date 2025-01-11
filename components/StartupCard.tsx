@@ -8,7 +8,7 @@ import {Author, Startup} from "@/sanity/types";
 export type StartupTypeCard  = Omit<Startup, "author"> & { author?: Author}
 
 const StartupCard = ({post} : {post: StartupTypeCard}) => {
-    const {_createdAt, views, author, title, category, _id, image, description} = post
+    const {_createdAt, author, title, category, _id, image, description} = post
     return (
         <li className="startup-card group" key={_id}>
             <div className="flex-between">
@@ -16,7 +16,7 @@ const StartupCard = ({post} : {post: StartupTypeCard}) => {
 
                 <div className="flex gap-1.5">
                     <EyeIcon className="size-6 text-primaey"/>
-                    <span className="text-16-mediun">{views}</span>
+                    <span className="text-16-mediun">{post.views}</span>
                 </div>
 
             </div>

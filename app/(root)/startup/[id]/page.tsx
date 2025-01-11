@@ -41,10 +41,10 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
 
             <section className="section_container">
                 <Image src={image}
-                    alt="thumbnail"
+                       alt="thumbnail"
                        width={3000}
                        height={3000}
-                     className="w-full h-auto rounded-xl"
+                       className="w-full h-auto rounded-xl"
                 />
 
                 <div className="space-y-5 mt-10 max-w-4xl mx-auto">
@@ -68,19 +68,16 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
 
                     <h3 className="text-30-bold">Pitch Details</h3>
                     {parsedContent ? (
-                      <section
-                        dangerouslySetInnerHTML={{ __html: parsedContent }}
-                        className="prose max-w-4xl font-work-sans break-all"
-                      />
+                        <section
+                            dangerouslySetInnerHTML={{__html: parsedContent}}
+                            className="prose max-w-4xl font-work-sans break-all"
+                        />
                     ) : (
                         <p className="no-results">No details provided</p>
                     )}
                 </div>
-                <div className="absolute bottom-4">
-                  <Suspense fallback={<Skeleton className="w-full h-[100px]"/>}>
-                      <View id={id}/>
-                  </Suspense>
-                </div>
+
+
                 <hr className="divider"/>
 
                 {
@@ -89,16 +86,24 @@ const Page = async ({params}: {params: Promise<{id: string}>}) => {
                             <p>Editor Picks</p>
                             <ul className="mt-7 card_grid-sm">
                                 {editorPicks.select.map((pick: StartupTypeCard, index: number) => (
-                                    <StartupCard key={index} post={pick} />
+                                    <StartupCard key={index} post={pick}/>
                                 ))}
                             </ul>
                         </div>
                     )}
 
-                <Suspense fallback={<Skeleton className="view_skeleton"  />}>
-                    <Skeleton />
+                <Suspense fallback={<Skeleton className="view_skeleton"/>}>
+                    <Skeleton/>
                 </Suspense>
             </section>
+
+
+            <div>
+                <Suspense fallback={<Skeleton className="w-full h-[100px]"/>}>
+                    <View id={id}/>
+                </Suspense>
+            </div>
+
         </main>
     )
 }
