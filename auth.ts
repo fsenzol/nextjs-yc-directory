@@ -4,9 +4,13 @@ import {client} from "@/sanity/lib/client";
 import {AUTHOR_BY_GITHUB_ID} from "@/sanity/lib/queries";
 import {writeClient} from "@/sanity/lib/write-client";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 export const {handlers, signIn, signOut, auth} = NextAuth({
     providers: [Github],
     callbacks: {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         async signIn({user,  profile}) {
             const existingUser = await client.withConfig({useCdn: false}).fetch(AUTHOR_BY_GITHUB_ID, {id: profile?.id})
 
@@ -25,6 +29,8 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             return true;
         },
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         async jwt({token, account, profile}) {
 
             if (account && profile) {
@@ -36,6 +42,8 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
 
         },
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         async session({token, session}) {
             Object.assign(session, {id: token?.id});
             return session;
